@@ -72,7 +72,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteSimulation(id: number): Promise<boolean> {
     const result = await db.delete(simulations).where(eq(simulations.id, id));
-    return result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 
   async createSimulationStats(stats: InsertSimulationStats): Promise<SimulationStats> {
