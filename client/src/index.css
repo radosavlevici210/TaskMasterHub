@@ -23,6 +23,19 @@
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
+  
+  /* Quantum theme colors */
+  --quantum-cyan: hsl(180, 100%, 50%);
+  --quantum-purple: hsl(258, 82%, 66%);
+  --quantum-green: hsl(120, 100%, 50%);
+  --quantum-orange: hsl(18, 100%, 60%);
+  --quantum-blue: hsl(182, 55%, 59%);
+  --quantum-yellow: hsl(53, 100%, 71%);
+  
+  /* Space theme colors */
+  --space-deep: hsl(0, 0%, 4%);
+  --space-matter: hsl(240, 29%, 13%);
+  --space-void: hsl(220, 50%, 18%);
 }
 
 .dark {
@@ -56,4 +69,96 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(26, 26, 46, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+  }
+  
+  .quantum-glow {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
+  }
+  
+  .particle-trail {
+    background: linear-gradient(45deg, 
+      rgba(0, 255, 255, 0.8) 0%, 
+      rgba(139, 92, 246, 0.6) 50%, 
+      rgba(16, 255, 16, 0.4) 100%);
+    background-size: 200% 200%;
+    animation: energy-flow 1.5s linear infinite;
+  }
+  
+  .energy-meter {
+    background: linear-gradient(90deg, 
+      rgba(16, 255, 16, 0.8) 0%, 
+      rgba(255, 230, 109, 0.8) 50%, 
+      rgba(255, 107, 53, 0.8) 100%);
+  }
+  
+  .particle-cursor {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="%2300FFFF" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="%2300FFFF"/></svg>') 12 12, auto;
+  }
+}
+
+@layer utilities {
+  .text-quantum-cyan { color: hsl(180, 100%, 50%); }
+  .text-quantum-purple { color: hsl(258, 82%, 66%); }
+  .text-quantum-green { color: hsl(120, 100%, 50%); }
+  .text-quantum-orange { color: hsl(18, 100%, 60%); }
+  .text-quantum-blue { color: hsl(182, 55%, 59%); }
+  .text-quantum-yellow { color: hsl(53, 100%, 71%); }
+  
+  .bg-quantum-cyan { background-color: hsl(180, 100%, 50%); }
+  .bg-quantum-purple { background-color: hsl(258, 82%, 66%); }
+  .bg-quantum-green { background-color: hsl(120, 100%, 50%); }
+  .bg-quantum-orange { background-color: hsl(18, 100%, 60%); }
+  .bg-quantum-blue { background-color: hsl(182, 55%, 59%); }
+  .bg-quantum-yellow { background-color: hsl(53, 100%, 71%); }
+  
+  .bg-space-deep { background-color: hsl(0, 0%, 4%); }
+  .bg-space-matter { background-color: hsl(240, 29%, 13%); }
+  .bg-space-void { background-color: hsl(220, 50%, 18%); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+  100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.8); }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes energy-flow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+@keyframes quantum-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+.animate-particle-float {
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+.animate-energy-flow {
+  animation: energy-flow 1.5s linear infinite;
+}
+
+.animate-quantum-spin {
+  animation: quantum-spin 4s linear infinite;
+}
+
+.font-quantum {
+  font-family: 'Orbitron', sans-serif;
 }
